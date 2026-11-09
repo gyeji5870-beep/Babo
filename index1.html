@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>신화 속 영웅 서사로 알아보는 나의 현대 리더십 진단 테스트</title>
+<style>
+:root {
+--primary: #618C6D;
+--primary-light: #E8F0EA;
+--sub: #A0ADA0;
+--bg: #F4F1EA;
+--card-bg: #FFFFFF;
+--text-main: #2C352D;
+--text-muted: #6B726E;
+--accent: #4A6B53;
+--border: #D8E2DC;
+--shadow: 0 20px 40px rgba(97, 140, 109, 0.08);
+}
+
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif;
+}
+
+body {
+background-color: var(--bg);
+color: var(--text-main);
+line-height: 1.7;
+padding: 30px 15px;
+}
+
+.container {
+max-width: 850px;
+margin: 0 auto;
+background-color: var(--card-bg);
+border-radius: 24px;
+box-shadow: var(--shadow);
+overflow: hidden;
+border: 1px solid rgba(160, 173, 160, 0.2);
+}
+
+header {
+background: linear-gradient(135deg, var(--primary), var(--accent));
+color: white;
+padding: 50px 30px;
+text-align: center;
+}
+
+header .badge {
+display: inline-block;
+background: rgba(255, 255, 255, 0.2);
+padding: 6px 16px;
+border-radius: 20px;
+font-size: 0.85rem;
+font-weight: 600;
+margin-bottom: 15px;
+letter-spacing: 1px;
+}
+
+header h1 {
+font-size: 1.85rem;
+margin-bottom: 12px;
+word-break: keep-all;
+letter-spacing: -0.5px;
+}
+
+header p {
+font-size: 1.05rem;
+opacity: 0.95;
+max-width: 650px;
+margin: 0 auto;
+word-break: keep-all;
+}
+
+.team-banner {
+background-color: var(--sub);
+color: white;
+text-align: center;
+padding: 12px;
+font-size: 0.95rem;
+font-weight: 500;
+}
+
+main {
+padding: 40px 30px;
+}
+
+/* 첫 화면 스타일 */
+#intro-section {
+text-align: center;
+padding: 20px 10px;
+}
+
+.hero-visual {
+background: linear-gradient(135deg, #F0F5F1, #E8F0EA);
+border: 2px dashed var(--primary);
+border-radius: 16px;
+padding: 35px 20px;
+margin-bottom: 30px;
+}
+
+.hero-visual h3 {
+color: var(--primary);
+font-size: 1.3rem;
+margin-bottom: 10px;
+}
+
+.hero-visual p {
+color: var(--text-muted);
+font-size: 0.95rem;
+}
+
+#intro-section h2 {
+color: var(--text-main);
+margin-bottom: 15px;
+font-size: 1.6rem;
+font-weight: 700;
+}
+
+#intro-section p {
+color: var(--text-muted);
+margin-bottom: 35px;
+font-size: 1.1rem;
+word-break: keep-all;
+}
+
+.btn {
+background-color: var(--primary);
+color: white;
+border: none;
+padding: 16px 36px;
+font-size: 1.15rem;
+border-radius: 35px;
+cursor: pointer;
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+box-shadow: 0 6px 20px rgba(97, 140, 109, 0.35);
+font-weight: bold;
+}
+
+.btn:hover {
+background-color: var(--accent);
+transform: translateY(-3px);
+box-shadow: 0 8px 25px rgba(97, 140, 109, 0.45);
+}
+
+.btn:disabled {
+background-color: var(--sub);
+cursor: not-allowed;
+transform: none;
+box-shadow: none;
+opacity: 0.6;
+}
+
+/* 문항 영역 스타일 */
+#quiz-section {
+display: none;
+}
+
+.progress-header {
+display: flex;
+justify-content: space-between;
+font-size: 0.9rem;
+color: var(--text-muted);
+margin-bottom: 8px;
+font-weight: 600;
+}
+
+.progress-bar-container {
+width: 100%;
+background-color: #E5E9E6;
+border-radius: 10px;
+height: 12px;
+margin-bottom: 30px;
+overflow: hidden;
+}
+
+.progress-bar {
+height: 100%;
+background: linear-gradient(90deg, var(--primary), var(--accent));
+width: 0%;
+transition: width 0.4s ease;
+border-radius: 10px;
+}
+
+.question-card {
+background: #FAFAFA;
+border: 1px solid var(--border);
+border-radius: 16px;
+padding: 30px;
+margin-bottom: 25px;
+}
+
+.question-title {
+font-size: 1.25rem;
+font-weight: bold;
+color: var(--text-main);
+margin-bottom: 20px;
+word-break: keep-all;
+line-height: 1.5;
+}
+
+.options-list {
+list-style: none;
+}
+
+.option-item {
+background-color: #FFFFFF;
+border: 2px solid var(--border);
+padding: 16px 22px;
+border-radius: 12px;
+margin-bottom: 14px;
+cursor: pointer;
+transition: all 0.25s ease;
+font-size: 1.02rem;
+word-break: keep-all;
+display: flex;
+align-items: center;
+gap: 12px;
+}
+
+.option-item::before {
+content: '';
+display: inline-block;
+width: 18px;
+height: 18px;
+border: 2px solid var(--sub);
+border-radius: 50%;
+flex-shrink: 0;
+transition: all 0.2s ease;
+}
+
+.option-item:hover {
+background-color: var(--primary-light);
+border-color: var(--primary);
+}
+
+.option-item.selected {
+background-color: var(--primary-light);
+border-color: var(--primary);
+color: var(--accent);
+font-weight: bold;
+box-shadow: 0 4px 12px rgba(97, 140, 109, 0.15);
+}
+
+.option-item.selected::before {
+border-color: var(--primary);
+background-color: var(--primary);
+box-shadow: inset 0 0 0 3px #FFFFFF;
+}
+
+.quiz-nav {
+display: flex;
+justify-content: space-between;
+margin-top: 30px;
+}
+
+.btn-secondary {
+background-color: #E2E8E4;
+color: var(--text-main);
+border: none;
+padding: 12px 24px;
+border-radius: 10px;
+cursor: pointer;
+font-size: 1rem;
+font-weight: 600;
+transition: background 0.2s;
+}
+
+.btn-secondary:hover {
+background-color: var(--sub);
+color: white;
+}
+
+/* 결과 화면 스타일 */
+#result-section {
+display: none;
+text-align: center;
+padding: 10px 0;
+}
+
+.result-card {
+background: linear-gradient(145deg, #FFFFFF, #FAFAFA);
+border: 2px solid var(--primary);
+border-radius: 20px;
+padding: 40px 30px;
+margin-bottom: 35px;
+text-align: left;
+box-shadow: 0 10px 30px rgba(97, 140, 109, 0.1);
+}
+
+.result-header-box {
+border-bottom: 2px solid var(--primary-light);
+padding-bottom: 20px;
+margin-bottom: 25px;
+}
+
+.result-card h3 {
+font-size: 1.6rem;
+color: var(--primary);
+margin-bottom: 6px;
+}
+
+.result-card h4 {
+font-size: 1.15rem;
+color: var(--text-muted);
+font-weight: 600;
+}
+
+.result-desc-group {
+margin-bottom: 20px;
+background: #F8FAF8;
+padding: 16px 20px;
+border-radius: 12px;
+border-left: 4px solid var(--primary);
+}
+
+.result-desc-group strong {
+color: var(--accent);
+display: block;
+margin-bottom: 6px;
+font-size: 1.05rem;
+}
+
+.result-desc-group p {
+color: var(--text-main);
+font-size: 1rem;
+}
+
+/* 학술 탐구 요약 영역 */
+.academic-section {
+margin-top: 60px;
+border-top: 2px dashed var(--border);
+padding-top: 40px;
+text-align: left;
+}
+
+.academic-section h3 {
+color: var(--primary);
+margin-bottom: 12px;
+font-size: 1.4rem;
+}
+
+.academic-section p {
+color: var(--text-muted);
+margin-bottom: 25px;
+font-size: 1rem;
+}
+
+table {
+width: 100%;
+border-collapse: collapse;
+margin-bottom: 35px;
+font-size: 0.95rem;
+border-radius: 10px;
+overflow: hidden;
+box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+
+th, td {
+border: 1px solid var(--border);
+padding: 14px 16px;
+text-align: left;
+word-break: keep-all;
+}
+
+th {
+background-color: var(--primary-light);
+color: var(--accent);
+font-weight: 700;
+}
+
+td {
+background-color: #FFFFFF;
+}
+
+.sources-box {
+background-color: #F0F5F1;
+padding: 20px;
+border-radius: 12px;
+font-size: 0.9rem;
+color: var(--text-muted);
+margin-bottom: 30px;
+border-left: 4px solid var(--sub);
+}
+
+.sources-box h4 {
+color: var(--primary);
+margin-bottom: 10px;
+font-size: 1.05rem;
+}
+
+.sources-box ul {
+padding-left: 20px;
+}
+
+.sources-box li {
+margin-bottom: 6px;
+}
+
+footer {
+text-align: center;
+padding: 25px;
+background-color: #EAEFEB;
+color: var(--text-muted);
+font-size: 0.95rem;
+border-top: 1px solid var(--border);
+font-weight: 500;
+}
+
+@media (max-width: 600px) {
+header h1 { font-size: 1.5rem; }
+main { padding: 25px 15px; }
+.result-card { padding: 25px 15px; }
+.question-card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<header>
+<div class="badge">R&E 융합탐구 프로젝트</div>
+<h1>신화 속 영웅 서사로 알아보는 나의 현대 리더십 진단 테스트</h1>
+<p>호메로스의 『일리아스』와 『오디세이아』 속 영웅들의 위기 대응 방식을 통해 나의 숨겨진 현대 리더십 유형을 발견해 보세요.</p>
+</header>
+
+<div class="team-banner">
+우리 팀(R&E 융합탐구 모둠)이 제안하는 신화 인물 리더십 진단 프로그램입니다.
+</div>
+
+<main>
+<!-- 1. 첫 화면 -->
+<section id="intro-section">
+<div class="hero-visual">
+<h3>🏛️ 고대 신화와 현대 경영학의 만남</h3>
+<p>아가멤논, 헥토르, 네스토르, 프로메테우스, 오디세우스 중 당신의 리더십 페르소나는?</p>
+</div>
+<h2>고대 신화 영웅들과 함께하는 리더십 여정</h2>
+<p>위기 상황, 갈등 해결, 보상과 공정성에 대한 당신의 선택은 어떤 리더십 유형과 닮아 있을까요? 4가지 상황 판단 문항을 통해 알아보세요.</p>
+<button class="btn" id="start-btn">테스트 시작하기</button>
+</section>
+
+<!-- 2. 문항 영역 -->
+<section id="quiz-section">
+<div class="progress-header">
+<span id="progress-text">문항 1 / 4</span>
+<span id="progress-percent">25%</span>
+</div>
+<div class="progress-bar-container">
+<div class="progress-bar" id="progress-bar"></div>
+</div>
+<div class="question-card" id="question-card">
+<!-- JS로 동적 렌더링 -->
+</div>
+<div class="quiz-nav">
+<button class="btn-secondary" id="prev-btn">이전</button>
+<button class="btn" id="next-btn" disabled>다음 문항</button>
+</div>
+</section>
+
+<!-- 3. 결과 화면 -->
+<section id="result-section">
+<h2 style="color: var(--primary); margin-bottom: 25px; font-size: 1.8rem;">✨ 진단 결과 분석</h2>
+<div class="result-card" id="result-content">
+<!-- JS로 동적 렌더링 -->
+</div>
+<button class="btn" id="restart-btn" style="margin-bottom: 20px;">다시 테스트하기</button>
+</section>
+
+<!-- 4. 학술 탐구 요약 영역 -->
+<section class="academic-section">
+<h3>📚 학술 탐구 요약 및 리더십 비교</h3>
+<p>보고서에 기반한 3대 현대 리더십(서번트·변혁적·거래적) 비교 및 5대 신화 인물 유형 요약입니다.</p>
+
+<table>
+<thead>
+<tr>
+<th>리더십 유형</th>
+<th>핵심 작동 기제</th>
+<th>추구 목표 및 장점</th>
+<th>주요 한계점</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>서번트 리더십</strong><br><small>(프로메테우스, 헥토르 일부)</small></td>
+<td>섬김, 정서적 치유, 이타적 헌신, 수평적 관계</td>
+<td>구성원 잠재력 실현, 신뢰와 자발적 몰입 증대</td>
+<td>위기 시 의사결정 지연, 질서 유지 곤란</td>
+</tr>
+<tr>
+<td><strong>변혁적 리더십</strong><br><small>(오디세우스, 헥토르 일부)</small></td>
+<td>카리스마, 비전 제시, 지적 자극, 개별 배려</td>
+<td>조직 혁신, 비전 공유, 변화 환경 적응력</td>
+<td>리더 의존도 높음, 구성원 피로감(소진)</td>
+</tr>
+<tr>
+<td><strong>거래적 리더십</strong><br><small>(아가멤논)</small></td>
+<td>교환 및 계약, 조건적 보상, 신상필벌</td>
+<td>단기 효율성 유지, 명확한 역할 분담과 질서</td>
+<td>수동적 문화 초래, 사무적 관계 형성</td>
+</tr>
+<tr>
+<td><strong>복합적 리더십</strong><br><small>(네스토르)</small></td>
+<td>상황과 상대에 따른 유연한 중재 및 수사적 설득</td>
+<td>갈등 조정, 다면적 상황 대응 유연성</td>
+<td>원칙의 일관성 유지 필요</td>
+</tr>
+</tbody>
+</table>
+
+<div class="sources-box">
+<h4>🔍 근거 자료 및 출처</h4>
+<ul>
+<li><strong>문헌 원전:</strong> 호메로스 『일리아스』, 『오디세이아』, 아이스킬로스 『결박된 프로메테우스』 원전 장면span_0span_0</li>
+<li><strong>경영학 선행연구:</strong> 로버트 그린리프(Robert Greenleaf)의 서번트 리더십 이론 및 현대 조직행동론 선행연구span_1span_1</li>
+</ul>
+</div>
+</section>
+</main>
+
+<footer>
+© 2026 R&E 융합탐구 모둠. All rights reserved.
+</footer>
+</div>
+
+<!-- 스크립트를 body 맨 아래에 배치하여 로딩 타이밍 에러 완전 차단 -->
+<script>
+const questions = [
+{
+q: "1. 조별 과제나 공동체 프로젝트 중 예상치 못한 거대한 위기에 부딪혔을 때, 당신의 주된 대처 방식은?",
+options: [
+{ text: "규칙과 역할 분담을 엄격히 재정비하고, 기여도에 따른 보상/책임을 명확히 한다.", type: "agamemnon" },
+{ text: "누구보다 먼저 앞장서서 솔선수범하며 공동체의 방패가 되어 과제를 수호한다.", type: "hector" },
+{ text: "과거의 경험과 지혜를 떠올려, 구성원들의 의견을 유연하게 중재하고 설득한다.", type: "nestor" },
+{ text: "내 안위나 보상을 뒤로하고, 구성원들이 자립할 수 있도록 헌신적으로 돕는다.", type: "prometheus" },
+{ text: "이성과 절제를 바탕으로 상황 정보를 통제하며 전략적인 탈출구를 마련한다.", type: "odysseus" }
+ ]
+},
+{
+q: "2. 공동체 내에서 보상과 공정성 문제가 불거졌을 때, 당신이 가장 중요하게 생각하는 태도는?",
+options: [
+{ text: "정해진 규칙과 계약, 신상필벌의 원칙이 흔들리면 조직의 근간이 무너진다고 본다.", type: "agamemnon" },
+{ text: "개인의 보상보다 공동체 전체의 안녕과 유대감을 지키는 것이 우선이다.", type: "hector" },
+{ text: "상황과 상대방의 입장을 균형 있게 살펴 갈등을 원만하게 조율하는 것이 중요하다.", type: "nestor" },
+{ text: "지배 체계나 불합리한 규칙에 저항해서라도 구성원의 자립과 성장을 이끌어야 한다.", type: "prometheus" },
+{ text: "감정적 동요를 가라앉히고, 장기적인 비전(목표)을 향해 이성적으로 판단한다.", type: "odysseus" }
+ ]
+},
+{
+q: "3. 팀원들과 관계를 맺고 동기를 부여할 때, 당신의 주된 스타일은?",
+options: [
+{ text: "명확한 지위와 교환 조건, 계약에 따른 철저한 성과 관리", type: "agamemnon" },
+{ text: "이타적 헌신과 정서적 유대를 통한 깊은 신뢰 형성", type: "hector" },
+{ text: "유연한 수사와 지혜를 통한 맞춤형 설득과 중재", type: "nestor" },
+{ text: "대가 없이 지식과 기술을 나누어주는 인류애적 섬김", type: "prometheus" },
+{ text: "비전을 공유하고 정보 통제와 절제를 강조하는 전략적 리더십", type: "odysseus" }
+ ]
+},
+{
+q: "4. 공동체 속에서 당신이 궁극적으로 추구하는 나의 역할은?",
+options: [
+{ text: "조직의 효율성과 기강을 바로잡는 공정한 집행자", type: "agamemnon" },
+{ text: "공동체를 위기에서 지켜내는 헌신적인 수호자", type: "hector" },
+{ text: "세대와 입장을 조화롭게 잇는 지혜로운 중재자", type: "nestor" },
+{ text: "구성원의 성장을 위해 희생을 마다하지 않는 혁신적 조력자", type: "prometheus" },
+{ text: "절망을 희망으로 바꾸는 냉철한 전략가 겸 위기관리자", type: "odysseus" }
+ ]
+}
+];
+
+const resultsData = {
+agamemnon: {
+name: "아가멤논형",
+title: "거래적 리더십형",
+summary: "보상과 규칙, 교환 관계를 중시하는 효율성 추구형",
+desc: "지위와 보상을 동일시하며 교환과 계약, 신상필벌을 중시합니다 (일리아스 1권 브리세이스 일화 등)span_2span_2.",
+strength: "명확한 역할 분담과 규칙을 통해 업무 효율성과 예측 가능성을 높입니다span_3span_3.",
+weakness: "보상과 공정성의 균형이 무너지면 구성원의 이탈과 심각한 조직 위기를 초래할 수 있습니다span_4span_4.",
+implication: "효율성을 높이지만 관계가 사무적이기 쉬우므로, 구성원과의 정서적 교감을 보완해야 합니다span_5span_5."
+},
+hector: {
+name: "헥토르형",
+title: "서번트 및 변혁적 복합형",
+summary: "이타적 헌신과 솔선수범으로 공동체를 수호하는 리더",
+desc: "개인의 생존보다 공동체의 안녕과 수호를 최우선으로 삼으며 전선에서 솔선수범합니다 (일리아스 6권, 12권 등)span_6span_6.",
+strength: "희생과 헌신으로 깊은 신뢰를 이끌어내며 공동체의 결속력을 극대화합니다span_7span_7.",
+weakness: "목표에 과몰입할 경우 개별 배려가 약해질 수 있으며, 위기 시 서번트 특성으로 인해 의사결정이 느려질 수 있습니다span_8span_8.",
+implication: "정서적 신뢰와 규율을 조화시켜 위기 상황에서도 공동체를 안정적으로 지켜내는 힘이 큽니다span_9span_9."
+},
+nestor: {
+name: "네스토르형",
+title: "복합적 리더십형 (상황 대처형)",
+summary: "과거의 지혜와 유연한 수사로 갈등을 중재하는 조정자",
+desc: "특정 유형에 고정되지 않고 과거의 권위와 지혜를 바탕으로 상황과 상대에 따라 유연하게 중재합니다 (일리아스 1권 중재 연설 등)span_10span_10.",
+strength: "상황과 상대방의 특성을 정확히 파악하여 갈등을 원만하게 조율하고 타협점을 찾아냅니다span_11span_11.",
+weakness: "상황에 따라 유연성을 발휘하느라 때로는 단호한 원칙 제시가 아쉽거나 중립에 치우칠 수 있습니다span_12span_12.",
+implication: "다양한 의견이 충돌하는 조직에서 유연한 소통과 중재를 통해 합의를 이끌어내는 데 유용합니다span_13span_13."
+},
+prometheus: {
+name: "프로메테우스형",
+title: "서번트 중심 저항적/변혁적형",
+summary: "인류애와 성장을 위해 안위를 포기하는 섬김의 정점",
+desc: "지배자의 명령에 저항하고 지식과 기술을 나누어 인간의 자립과 성장을 돕습니다 (결박된 프로메테우스)span_14span_14.",
+strength: "보상을 기대하지 않는 진정한 헌신으로 구성원의 자발적 몰입과 내적 성장을 이끌어냅니다span_15span_15.",
+weakness: "기존의 권력 체계나 조직 시스템과 마찰을 빚거나 개인의 소진을 유발하기 쉽습니다span_16span_16.",
+implication: "구성원의 장기적 자립과 성장을 돕는 섬김의 리더십은 조직에 깊은 영감을 불어넣습니다span_17span_17."
+},
+odysseus: {
+name: "오디세우스형",
+title: "변혁적 중심 전략적 위기관리형",
+summary: "이성과 절제, 정보 통제를 통해 절망을 희망으로 바꾸는 생존 리더십",
+desc: "공동의 비전(귀향)을 이루기 위해 정보를 통제하고 위기를 관리합니다 (오디세이아 12권 등)span_18span_18.",
+strength: "냉철한 이성과 전략적 사고로 절체절명의 위기 상황을 돌파하고 탁월한 성과를 창출합니다span_19span_19.",
+weakness: "지나친 계산과 정보 통제가 구성원에게 거리감이나 긴장감을 줄 수 있습니다span_20span_20.",
+implication: "복잡하고 급변하는 위기 상황에서는 비전 제시와 전략적 관리를 겸비한 리더십이 결정적 역할을 합니다span_21span_21."
+}
+};
+
+let currentQuestion = 0;
+let userAnswers = [];
+
+const introSection = document.getElementById('intro-section');
+const quizSection = document.getElementById('quiz-section');
+const resultSection = document.getElementById('result-section');
+const startBtn = document.getElementById('start-btn');
+const nextBtn = document.getElementById('next-btn');
+const prevBtn = document.getElementById('prev-btn');
+const restartBtn = document.getElementById('restart-btn');
+const questionCard = document.getElementById('question-card');
+const progressBar = document.getElementById('progress-bar');
+const progressText = document.getElementById('progress-text');
+const progressPercent = document.getElementById('progress-percent');
+const resultContent = document.getElementById('result-content');
+
+// 테스트 시작 버튼 클릭 이벤트
+startBtn.addEventListener('click', () => {
+introSection.style.display = 'none';
+quizSection.style.display = 'block';
+currentQuestion = 0;
+userAnswers = [];
+loadQuestion();
+window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+function loadQuestion() {
+const qData = questions[currentQuestion];
+let html = <div class="question-title"&gt;${qData.q}</div><ul class="options-list">`;
+
+qData.options.forEach((opt, idx) => {
+const isSelected = userAnswers[currentQuestion] === idx ? 'selected' : '';
+html += <li class="option-item${isSelected}" data-index="{opt.text}</li>; }); html +=`;
+
+questionCard.innerHTML = html;
+
+const optionItems = questionCard.querySelectorAll('.option-item');
+optionItems.forEach(item => {
+item.addEventListener('click', () => {
+const idx = parseInt(item.getAttribute('data-index'));
+userAnswers[currentQuestion] = idx;
+
+optionItems.forEach(el => el.classList.remove('selected'));
+item.classList.add('selected');
+
+nextBtn.disabled = false;
+});
+});
+
+const currentStep = currentQuestion + 1;
+const totalSteps = questions.length;
+const progress = (currentStep / totalSteps) * 100;
+progressBar.style.width = ${progress}%; progressText.innerText =문항 ${currentStep} / ${totalSteps}; progressPercent.innerText = ``${Math.round(progress)}%;
+
+prevBtn.style.visibility = currentQuestion === 0 ? 'hidden' : 'visible';
+nextBtn.innerText = currentQuestion === questions.length - 1 ? '결과 보기' : '다음 문항';
+nextBtn.disabled = userAnswers[currentQuestion] === undefined;
+}
+
+prevBtn.addEventListener('click', () => {
+if (currentQuestion > 0) {
+currentQuestion--;
+loadQuestion();
+}
+});
+
+nextBtn.addEventListener('click', () => {
+if (userAnswers[currentQuestion] === undefined) return;
+
+if (currentQuestion < questions.length - 1) {
+currentQuestion++;
+loadQuestion();
+} else {
+showResult();
+}
+});
+
+function showResult() {
+quizSection.style.display = 'none';
+resultSection.style.display = 'block';
+
+let counts = { agamemnon: 0, hector: 0, nestor: 0, prometheus: 0, odysseus: 0 };
+userAnswers.forEach((ansIdx, qIdx) => {
+const type = questions[qIdx].options[ansIdx].type;
+counts[type]++;
+});
+
+let maxType = 'hector';
+let maxCount = -1;
+for (let type in counts) {
+if (counts[type] > maxCount) {
+maxCount = counts[type];
+maxType = type;
+}
+}
+
+const res = resultsData[maxType];
+
+resultContent.innerHTML = &lt;div class="result-header-box"&gt; &lt;h3&gt;🏆 ${res.name}</h3>
+<h4>리더십 유형: ${res.title} (${res.summary})</h4>
+</div>
+
+<div class="result-desc-group">
+<strong>📌 유형 상세 설명</strong>
+<p>${res.desc}&lt;/p&gt; &lt;/div&gt; &lt;div class="result-desc-group"&gt; &lt;strong&gt;💪 주요 강점&lt;/strong&gt; &lt;p&gt;${res.strength}</p>
+</div>
+<div class="result-desc-group">
+<strong>⚠️ 주의할 단점 및 한계</strong>
+<p>${res.weakness}&lt;/p&gt; &lt;/div&gt; &lt;div class="result-desc-group"&gt; &lt;strong&gt;💡 현대 조직 시사점&lt;/strong&gt; &lt;p&gt;${res.implication}&lt;/p&gt; &lt;/div&gt;;
+
+window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+restartBtn.addEventListener('click', () => {
+currentQuestion = 0;
+userAnswers = [];
+resultSection.style.display = 'none';
+introSection.style.display = 'block';
+window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+</script>
+</body>
+</html>
